@@ -1,0 +1,89 @@
+﻿/* DEFAULTS */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td 
+{border:0 none;margin:0;padding:0;vertical-align:baseline;}
+
+body {font-size: .80em;font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;margin: 0px;padding: 0px;}
+
+a:link, a:visited {color: #034af3;}
+a:hover {color: #1d60ff;text-decoration: none;}
+a:active {color: #034af3;}
+
+p {margin-bottom: 10px;line-height: 1.6em;}
+
+/* MAINTENANCE CLASSES */
+.clearboth {clear:both;line-height:0px;font-size:0px;}
+
+/* HEADINGS */
+h1, h2, h3, h4, h5, h6 {font-size: 1.5em;color: #666666;font-variant: small-caps;text-transform: none;font-weight: 200;margin-bottom: 0px;}
+h1 {font-size: 1.6em;padding-bottom: 0px;}
+h2 {font-size: 1.5em;font-weight: 600;margin-top:15px;}
+h3 {font-size: 1.2em;}
+h4 {font-size: 1.1em;}
+h5, h6 {font-size: 1em;}
+
+/* PRIMARY LAYOUT ELEMENTS */
+#navHeader1 {margin:0;padding:10px;text-align:center;background-color:#33cc33;border-bottom:5px solid #000;}
+#navHeader1 a {display:inline-block;margin:2px 0;padding:10px;color:#333;font-weight:bold;text-decoration:none;}
+#navHeader1 a:hover {border-radius:100%;background-color:#bbff00;text-decoration:underline;}
+
+#pageHeader1 {margin:15px auto;padding:5px;width:500px;background-color:#eee;border-radius:5px;border-width:1px 3px;border-style:solid;border-color:#000;text-align:center;font-weight:bold;font-family:Garamond, Tahoma, Serif;}
+
+#bodyContainer1 {width:1022px;margin:15px auto;padding:15px;background-color:#fff;border-width:3px 1px;border-style:solid;border-color:#000;border-radius:8px 8px;}
+
+/* GLOBAL PAGING STYLES */
+.pagination {display:block;position:relative;text-align:right;}
+.pagination p {margin:0;padding:0;}
+.pagination ul {display:inline-block;list-style:none;margin:10px 0;padding:0 10px;}
+.pagination ul li {display:inline;padding:0;margin:0;}
+.pagination ul li a {padding:4px 6px;border:1px solid transparent;text-decoration:none;margin:0;}
+.pagination ul li a:hover {color:#3c8fc4;}
+.pagination ul li a.active {color:#444;background:#fff;border:1px solid #d7d7c2;text-decoration:none;font-weight:bold; }
+
+/* HEADINGS */
+#Answers_Container h1, h2, h3, h4, h5, h6 {color: #666666;font-variant: small-caps;text-transform: none;font-weight: 200;margin-bottom: 0px;}
+#Answers_Container h1 {font-size: 1.6em;padding-bottom: 0px;margin-bottom: 0px;}
+#Answers_Container h2 {font-size: 1.5em;font-weight: 600;margin-bottom:10px;}
+#Answers_Container h3 {font-size: 1.2em;}
+#Answers_Container h4 {font-size: 1.1em;}
+#Answers_Container h5, h6 {font-size: 1em;}
+
+/* PRIMARY LAYOUT ELEMENTS */
+#Answers_Container * {font-family: "Helvetica Neue", "Lucida Grande", "Segoe UI", Arial, Helvetica, Verdana, sans-serif;}
+
+#Answers_Container a:link, a:visited {color: #034af3;}
+#Answers_Container a:hover {color: #1d60ff;text-decoration: none;}
+#Answers_Container a:active {color: #034af3;}
+
+#Answers_Categories {width:150px;float:left;vertical-align:top;margin-right:15px;}
+#Answers_Categories a {display:block;margin:2px;text-decoration:none;padding:1px 0;}
+#Answers_Categories a:hover {border-width:1px 0;border-style:dashed;border-color:#336633;padding:0;}
+#Answers_Content {float:left;margin:0 auto;width:829px;}
+#Answers_Content h2 {text-align:center;border-bottom:2px solid #336699;border-radius:3px;box-shadow:0px 0px 3px 0px #336699;}
+#Answers_Content .Date {font-weight:normal;color:#000;font-size:.8em;}
+#Answers_Content .Date:before {content:'Posted: ';}
+.Question {margin:0 auto;margin-top:15px;}
+.Question .Author {padding-bottom:5px;border-bottom:1px solid #aaa;}
+.Question .Text {padding:10px;}
+.Question .Date {padding-top:5px;border-top:1px solid #aaa;}
+.Answers {margin-top:15px;}
+.Answers .Text {border:1px solid #ccc;border-radius:5px;padding:10px;margin-bottom:10px;}
+.Answers .Date {margin-top:10px;}
+.Answer_ListItem {padding:7px;border-radius:7px;cursor:pointer;}
+.Answer_ListItem:hover {background-color:#ddd;}
+.Answer_ListItem a {display:block;text-decoration:none;font-weight:bold;}
+
+/* <form> element and related formatting */
+.AJAXForm_Response {display:none;}
+.AJAXForm_Error {border:2px solid red;border-radius:5px;box-shadow:inset 0px 0 12px 2px yellow;text-align:center;padding:15px;}
+
+.RPlus_Form textarea {width:500px;height:150px;color:#aaa;}
+.RPlus_Form label {}
+.RPlus_Form label.Required:after {content:' (required)';font-size:10px;}
+.RPlus_Form .Field {font-size:1em;margin:5px;padding:5px;border:1px solid #999;border-radius:7px;box-shadow:inset 0 0 5px 2px #ccc;}
+.RPlus_Form .SubjectBox {width:500px;color:#aaa;}
+.RPlus_Form .SelectBox {width:150px;}
+.RPlus_Form .Field:focus {margin:4px;border:2px solid orange;}
+
+/* General formatting class */
+.center {text-align:center;margin:0 auto;}
+.small {font-weight:normal;font-size:10px;color:#000;}

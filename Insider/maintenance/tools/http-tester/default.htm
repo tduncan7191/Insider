@@ -1,0 +1,105 @@
+<html>
+<head>
+<title></title>
+<style type="text/css">
+h1 { font-size:12px; }
+h2 { font-size:12px; border-bottom:1px dotted #ccc; padding:5px 0; }
+</style>
+<script type="text/javascript" src="jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="htmlescape.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	app.init();
+});
+
+var app = function () {}
+app.stop = true;
+app.rtext = false;
+app.reverse = false;
+app.intid = undefined;
+app.dtReqStart = true;
+app.init = function () {
+	$.ajaxSetup({
+		type: 'GET',
+		headers: { "cache-control": "no-cache" }
+	});
+	
+	$("#url").val((window.location.href).replace('http://','').replace('https://',''));
+	$("#toggle").bind('click', function () { app.toggle(); });
+	$("#clear").bind('click', function () { $("#results").html(""); });
+	$("#status").html("Waiting for input...");
+}
+app.toggle = function () {
+	if ($("#url").val().length == 0) { alert('Please enter a URL to test.'); return; }
+
+	var oApp = null;
+
+	//start test
+	if ($("#toggle").html() == 'Start') {
+		$("#status").html("Running...");
+		$("#cnt_requests").html("0");
+		$("#cnt_errors").html("0");
+		$("#results").html("");
+
+		app.stop = false;
+		var iInt = parseInt($("#interval option:selected").val() * 1000);
+
+		app.intid = setInterval(app.start, iInt);
+
+		$("#toggle").html('Stop');
+	}
+	//stop test
+	else {
+		app.stop = true;
+		$("#toggle").html('Start');
+		$("#status").html("Stopped...");
+	}
+}
+app.start = function () {
+	app.rtext = $("#rtext").is(':checked');
+	app.reverse = $("#reverse").is(':checked');
+	app.dtReqStart = new Date();
+	if (app.stop) clearInterval(app.intid);
+	else {
+		if (app.rtext) var s = "Get-Remote-Text.aspx";
+		else var s = "Get-Remote-Response.aspx";
+		$.ajax({
+			async: false,
+			url: s,
+			data: "url=" + $("#http").val() + $("#url").val(),
+			complete: function (jqXHR, textStatus) {
+				var dtNow = new Date();
+				if ($("#cnt_requests").html().length = 0) $("#cnt_requests").html(parseInt($("#cnt_requests").html()) + 1);
+				else $("#cnt_requests").html(parseInt($("#cnt_requests").html()) + 1);
+
+				if (jqXHR.responseText != "OK" && !app.rtext) {
+					if ($("#cnt_errors").html().length = 0) $("#cnt_errors").html(parseInt($("#cnt_errors").html()) + 1);
+					else $("#cnt_errors").html(parseInt($("#cnt_errors").html()) + 1);
+				}
+
+				if (jqXHR.responseText != "OK" || $("#errors").is(':checked') == false) {
+					if (app.rtext) $("#results").html(escapex(jqXHR.responseText));
+					else {
+						var sHTML = "<h2>" + dtNow + " <span style=\"color:orange;\">Response Code:</span> " + jqXHR.responseText + " -- Response Time: " + (dtNow-app.dtReqStart) + " ms</h2>";
+						if (app.reverse) $("#results").prepend(sHTML);
+						else $("#results").append(sHTML);
+					}
+				}
+			}
+		});
+	}
+};
+</script>
+</head>
+<body>
+<div id="settings">
+URL: <select id="http"><option value="http://">http://</option><option value="https://">https://</option><input type="text" id="url" maxlength="1024" value="" /><br />
+Interval: <select id="interval"><option value="1">1s</option><option value="5" selected="selected">5s</option><option value="10">10s</option><option value="30">30s</option></select><br />
+<input type="checkbox" id="errors" value="1" /> Only Show Errors<br />
+<input type="checkbox" id="rtext" value="1" /> Show Response Text<br />
+<input type="checkbox" id="reverse" value="1" /> Show Newest First<br />
+<button type="submit" id="toggle">Start</button><button type="reset" id="clear">Clear Response</button>
+<h1><span id="status"></span> Requests: <span id="cnt_requests">0</span> Errors: <span id="cnt_errors">0</span></h1>
+<div id="results">&nbsp;</div>
+</body>
+</html>

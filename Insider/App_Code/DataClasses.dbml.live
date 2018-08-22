@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="INSIDER" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=MASSERV02;Initial Catalog=INSIDER;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="INSIDERConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.comment_type" Member="comment_types">
+    <Type Name="comment_type">
+      <Column Name="comment_type_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Comment_type" Member="Comment_type1" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="comment_type_comment" Member="comments" ThisKey="comment_type_id" OtherKey="topicId" Type="comment" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TruckEntry" Member="TruckEntries">
+    <Type Name="TruckEntry">
+      <Column Name="SalesOrderNumber" Type="System.String" DbType="VarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ML_UDF_SOH_REJECT_REASON" Type="System.String" DbType="VarChar(250)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SHIP_OTHER_CARR" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SHIP_OTH_ACC_BR" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SHIP_OTH_ACC_NU" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SHIP_OTH_BROKER" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_CC_NUM" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_CC_PREAUTH_NUM" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_CC_EXPDATE" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_CC_TYPE" Type="System.String" DbType="VarChar(7)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_OUTBOUND_SHIP" Type="System.Decimal" DbType="Decimal(19,7)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_CURRENCY_NAME" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_ORD_EMAIL_ADD" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="CB_UDF_SOH_PICK_TICK_PRINT" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="CB_UDF_SOH_PRINT_TAGS" Type="System.String" DbType="VarChar(1)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SHIP_NOTES" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SHIP_PHONE" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_TAG_DESCRIPTION" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SO_SHIP_TERMS" Type="System.String" DbType="VarChar(25)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_CONTRACT_ID" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_GROUP_ID" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_STUDENT_ID" Type="System.String" DbType="VarChar(8)" CanBeNull="true" />
+      <Column Name="ML_UDF_SOH_SHIP_UPS" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.comments" Member="comments">
+    <Type Name="comment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_comment_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="comment" Member="comment1" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="userid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="topicId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ts" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="comment_comment" Member="comments" ThisKey="id" OtherKey="parent_comment_id" Type="comment" />
+      <Association Name="comment_type_comment" Member="comment_type" ThisKey="topicId" OtherKey="comment_type_id" Type="comment_type" IsForeignKey="true" />
+      <Association Name="comment_comment" Member="comment2" ThisKey="parent_comment_id" OtherKey="id" Type="comment" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Company" Member="Companies">
+    <Type Name="Company">
+      <Column Name="companyID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="companyName" Type="System.String" DbType="Char(65)" CanBeNull="true" />
+      <Association Name="Company_Contact" Member="Contacts" ThisKey="companyID" OtherKey="companyID" Type="Contact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contact" Member="Contacts">
+    <Type Name="Contact">
+      <Column Name="contactID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="companyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="departmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="firstName" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="lastName" Type="System.String" DbType="Char(65)" CanBeNull="true" />
+      <Column Name="middleName" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="nickname" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="password" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="Char(100)" CanBeNull="true" />
+      <Column Name="city" Type="System.String" DbType="Char(40)" CanBeNull="true" />
+      <Column Name="stateID" Type="System.String" DbType="Char(2)" CanBeNull="true" />
+      <Column Name="zip" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="postionName" Type="System.String" DbType="Char(65)" CanBeNull="true" />
+      <Column Name="managerId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="updateDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_Num" Type="System.String" DbType="Char(9)" CanBeNull="true" />
+      <Column Name="dateOfBirth" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="annDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="InactiveDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="sSessionID" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="dtSessionExpires" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Contact_Contact" Member="Contacts" ThisKey="contactID" OtherKey="managerId" Type="Contact" />
+      <Association Name="Company_Contact" Member="Company" ThisKey="companyID" OtherKey="companyID" Type="Company" IsForeignKey="true" />
+      <Association Name="Contact_Contact" Member="Contact1" ThisKey="managerId" OtherKey="contactID" Type="Contact" IsForeignKey="true" />
+      <Association Name="Department_Contact" Member="Department" ThisKey="departmentID" OtherKey="departmentID" Type="Department" IsForeignKey="true" />
+      <Association Name="state_Contact" Member="state" ThisKey="stateID" OtherKey="stateID" Type="state" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Contact_Children" Member="Contact_Childrens">
+    <Type Name="Contact_Children">
+      <Column Name="childrenID" Type="System.String" DbType="Char(10) NOT NULL" CanBeNull="false" />
+      <Column Name="firstName" Type="System.String" DbType="Char(21)" CanBeNull="true" />
+      <Column Name="lastName" Type="System.String" DbType="Char(65)" CanBeNull="true" />
+      <Column Name="dob" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="contactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Departments" Member="Departments">
+    <Type Name="Department">
+      <Column Name="departmentID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="departmentName" Type="System.String" DbType="Char(45)" CanBeNull="true" />
+      <Association Name="Department_Contact" Member="Contacts" ThisKey="departmentID" OtherKey="departmentID" Type="Contact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.event" Member="events">
+    <Type Name="event">
+      <Column Name="event_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="description" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="event_start" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="event_end" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="contact_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="event_type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Nomination" Member="Nominations">
+    <Type Name="Nomination">
+      <Column Name="nomId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NomineeId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NominatorId" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="nomDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.qa_answers" Member="qa_answers">
+    <Type Name="qa_answer">
+      <Column Name="iAID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iQID" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="iContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sAnswer" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="dtCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.qa_category" Member="qa_categories">
+    <Type Name="qa_category">
+      <Column Name="iCatID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sName" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="iAdminUserID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.qa_notification" Member="qa_notifications">
+    <Type Name="qa_notification">
+      <Column Name="iUID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="iQuestionID" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.qa_question" Member="qa_questions">
+    <Type Name="qa_question">
+      <Column Name="iQID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="iContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sSubject" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sQuestion" Type="System.String" DbType="NText" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="iCatID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="sGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SkupForecasts" Member="SkupForecasts">
+    <Type Name="SkupForecast">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="forecastYear" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="forecastCategory" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="Jan" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Feb" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Mar" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Apr" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="May" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Jun" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Jul" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Aug" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Sep" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Oct" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Nov" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Dec" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SkupFutureEntrys" Member="SkupFutureEntries">
+    <Type Name="SkupFutureEntry">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="transactionDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="value" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SkupHistoricADUs" Member="SkupHistoricADUs">
+    <Type Name="SkupHistoricADUs">
+      <Column Name="itemkey" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ItemCode" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="entryDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ADU" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.states" Member="states">
+    <Type Name="state">
+      <Column Name="stateID" Type="System.String" DbType="Char(2) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="stateName" Type="System.String" DbType="Char(45)" CanBeNull="true" />
+      <Association Name="state_Contact" Member="Contacts" ThisKey="stateID" OtherKey="stateID" Type="Contact" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TextBoard" Member="TextBoards">
+    <Type Name="TextBoard">
+      <Column Name="iID" Type="System.Int64" DbType="BigInt NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sBoard" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="sText" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="sSource" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="iContactID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dtCreated" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThankYou" Member="ThankYous">
+    <Type Name="ThankYou">
+      <Column Name="thkID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RecipientID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nominatorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="message" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="thkDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

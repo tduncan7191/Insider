@@ -1,0 +1,46 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/templates/Default.master" AutoEventWireup="true" CodeFile="Answers.master.cs" Inherits="Template_Answers" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentHeader1" Runat="Server">
+    <asp:ContentPlaceHolder id="AnswersHeader1" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPageHeader1" Runat="Server">
+    <asp:ContentPlaceHolder id="AnswersPageHeader1" runat="server">
+    </asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentBody1" Runat="Server">
+    <div id="Answers_Categories">
+        <a href="/answers/">Answers Main Page</a>
+        <br />
+        <%
+			using (System.Data.SqlClient.SqlConnection oCN = clsRPlus.fnOpenCN(clsRPlus.enumDBs.INSIDER))
+			{
+				using (System.Data.SqlClient.SqlCommand oCMD = new System.Data.SqlClient.SqlCommand())
+				{
+					oCMD.Connection = oCN;
+					oCMD.CommandText = "SELECT COUNT(q.iQID) As iCnt, c.iCatID, c.sName"
+										+ " FROM qa_category c"
+										+ " LEFT JOIN qa_question q ON q.iCatID = c.iCatID"
+										+ " GROUP BY c.iCatID, c.sName ORDER BY sName";
+
+					using (System.Data.SqlClient.SqlDataReader oDR = oCMD.ExecuteReader())
+					{
+						while (oDR.Read())
+						{
+        %>
+            <a href="/answers/category/?iCatID=<%=oDR["iCatID"].ToString() %>"><%=oDR["sName"].ToString()%>
+				<span class="small">(<%=oDR["iCnt"].ToString()%>)</span></a>
+        <%
+						}
+					}
+				}
+            }
+        %>
+    </div>
+    <div id="Answers_Content">
+        <asp:ContentPlaceHolder id="AnswersBody1" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+    <div class="clearboth">&nbsp;</div>
+</asp:Content>
+

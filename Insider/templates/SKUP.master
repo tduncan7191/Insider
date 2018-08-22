@@ -1,0 +1,43 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/templates/Default.master" AutoEventWireup="true" CodeFile="SKUP.master.cs" Inherits="Template_Answers" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentHeader1" Runat="Server">
+	<asp:ContentPlaceHolder id="SKUPHeader1" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPageHeader1" Runat="Server">
+    <asp:ContentPlaceHolder id="SKUPPageHeader1" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentBody1" Runat="Server">
+	<div id="skup2">
+		<div class="header">
+			<div class="menu">
+				<h3>The SKUP Menu</h3>
+				<ul>
+					<li class="rp-clickable"><a href="/things/the-skup/2.0/">Main Page</a></li>
+					<li onclick="fnGoWithSKU(this);return false;"><a href="/things/the-skup/2.0/adu-adjustments/" onclick="fnGoWithSKU(this);return false;">ADU Adjustments</a></li>
+					<li onclick="fnGoWithSKU(this);return false;"><a href="/things/the-skup/2.0/usage-entries/" onclick="fnGoWithSKU(this);return false;">Usage Entries</a></li>
+					<!--<li class="rp-clickable"><a href="/things/the-skup/2.0/future-usage/">Future Usage</a></li>-->
+					<li class="rp-clickable"><a href="/things/the-skup/2.0/forecasts/">Forecasts</a></li>
+					<li class="rp-clickable"><a href="/things/the-skup/2.0/product-classes/">Product Class Config.</a></li>
+					<li class="rp-clickable"><a href="/things/the-skup/legacy/">Legacy SKUP</a></li>
+				</ul>
+				<script type="text/javascript">
+					function fnGoWithSKU(o) {
+						if ($(o).is('li')) o = $(o).children('a');
+						window.location.href = $(o).attr('href') + "?sSKU=" + (($("input[name$='sSKU']").val()==undefined) ? '' : $("input[name$='sSKU']").val());
+					}
+				</script>
+			</div>
+			<h2 class="title">
+				<asp:ContentPlaceHolder id="SKUPTitle1" runat="server"></asp:ContentPlaceHolder>
+			</h2>
+		</div>
+		<div class="body">
+			<asp:ContentPlaceHolder id="SKUPBody1" runat="server"></asp:ContentPlaceHolder>
+		</div>
+	</div>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="CPL_NoWrap" runat="server">
+	<script type="text/javascript" src="/scripts/rp-the-skup.js"></script>
+	<asp:ContentPlaceHolder id="SKUPNoWrap" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>

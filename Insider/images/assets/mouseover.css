@@ -1,0 +1,139 @@
+/* ######### CSS for top level tabs ######### */
+
+#topNav ul {list-style-type: none;  padding: 0; margin: 0; }
+#topNav li {list-style-image: none; display: inline; }
+#topNav a {
+	text-decoration: none;
+	border:0;
+	color: #6D276E;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 26px;
+	font-weight: bold;
+	padding-top: 5px;
+	padding-right: 15px;
+	padding-bottom: 6px;
+	padding-left: 15px;
+}
+#topNav a:hover {
+	color: #FFFFFF;
+	background-color: #d6e04e;
+	background-repeat: repeat-x;
+	background-position: top;
+}
+.tabsmenuclass ul{
+float: right;
+overflow: hidden;
+width: 1200px;
+margin-left: 300px;
+margin-top: -250px;
+list-style-type: none;
+}
+
+.tabsmenuclass li{
+float: left;
+}
+
+.tabsmenuclass a{
+
+display: block;
+padding: 5px 7px;
+background: #D6E04E;
+color: #6D276E;
+margin-right: 1px;
+text-decoration: none;
+font: bold 13px Arial;
+}
+
+.tabsmenuclass a:hover, .tabsmenuclass a.selected{
+
+background: #6D276E;
+color: #D6E04E;
+}
+
+/* ######### CSS for sub menu container below ######### */
+
+.tabsmenucontentclass{
+background: #FFFFFF;
+float: right;
+overflow: hidden;
+width: 1200px;
+margin-left: 300px;
+margin-top: -120px;
+list-style-type: none;
+}
+
+.tabsmenucontentclass ul{
+
+}
+
+.tabsmenucontentclass li{
+
+}
+
+p{font: 12pt "Franklin Gothic Book"; color: #33465D; font-weight: bold;margin:0;padding:0;}
+h4{font-family: verdana,arial;font-size:10px;line-height:1.2em;margin:0;padding:2px;margin:0;}
+h4 a{font-family: verdana,arial;font-size:10px;color: 003892;line-height:1.2em;margin:0;padding:2px;margin:0;}
+
+
+.pic {
+margin-left: 340px;
+margin-top: -5px;
+width: 500px;
+list-style-type: none;
+}
+
+.Header {
+	float: left;
+	width: 400px;
+	padding-left: 350px;
+}
+#holiday {
+	float: left;
+	margin-left: 280px;
+	margin-top: -250px;
+	width: 430px;
+
+}
+
+#table {
+	float: left;
+	margin-left: 50px;
+	width: 430px;
+	height: 800px;
+	z-index: 4;
+	text-align: left;
+	z-index: 7;
+}
+
+#sideNav {
+	background-color: #ffffff;
+	border-color: #000000;
+	border-size: 1px;
+	float: left;
+	margin-left: 100px;
+	margin-top: 90px;
+	width: 180px;
+	height: auto;
+}
+#sideNav ul {list-style-type: none;  padding: 0; margin: 0; }
+#sideNav li {list-style-image: none; display: inline; }
+#sideNav a {
+
+	padding: 5px 15px 6px;
+	text-decoration: none;
+	border:0;
+	color: #000000;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	line-height: 26px;
+	font-weight: bold;
+}
+#update {
+
+	margin-left: 400px;
+	margin-top: 1px;
+	}
+.clearer { clear: both; display: block; height: 1px; margin-bottom: -1px; font-size: 1px; line-height: 1px; }

@@ -1,0 +1,16 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/templates/Default.master" AutoEventWireup="true" CodeFile="DataAlerts.master.cs" Inherits="Template_Answers" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentHeader1" Runat="Server">
+	<asp:ContentPlaceHolder id="DAHeader1" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPageHeader1" Runat="Server">
+    <asp:ContentPlaceHolder id="DAPageHeader1" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentBody1" Runat="Server">
+	<asp:ContentPlaceHolder id="DABody1" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="CPL_NoWrap" runat="server">
+	<script type="text/javascript" src="/scripts/rp-data-alerts.js"></script>
+	<asp:ContentPlaceHolder id="DANoWrap" runat="server"></asp:ContentPlaceHolder>
+</asp:Content>

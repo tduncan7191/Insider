@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Get-Remote-Response.aspx.cs" Inherits="Get_Remote_Response" %>
