@@ -240,7 +240,7 @@ public class Scanbook : System.Web.Services.WebService
             EnableSsl = true,
             DeliveryMethod = SmtpDeliveryMethod.Network,
             UseDefaultCredentials = false,
-            Credentials = new NetworkCredential("tduncan@redemptionplus.com", "..Dunc@n!1"),
+            Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email"], ConfigurationManager.AppSettings["EmailPassword"]),
             Host = "smtp.gmail.com"
         };
         mail.Subject = "Your new scan book is attached";
