@@ -58,11 +58,11 @@
                         <br />
 						<br />
 						<label>Start Date</label>
-						<asp:TextBox ID="startDate" runat="server" TextMode="Date"/>
+						<asp:TextBox ID="startDate" runat="server"/>
 						<br />
 						<br />						
 						<label>End Date</label>
-						<asp:TextBox ID="endDate" runat="server" TextMode="Date"/>
+						<asp:TextBox ID="endDate" runat="server"/>
 						<br />
 						<br />					
 						<input type="text" ID="addItem" runat="server" placeholder="Item Code"/>
